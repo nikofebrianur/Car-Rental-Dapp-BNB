@@ -7,7 +7,7 @@ contract CarRental {
     // DATA
 
     // Counter
-   using Counters for Counters.Counter;
+    using Counters for Counters.Counter;
     Counters.Counter private _counter;
 
     // Owner
@@ -37,13 +37,38 @@ contract CarRental {
     }
 
     // enum to indicate the status of the cara
-   enum Status {
-      Retired,
-      InUse,
-      Available
-   }
-   
+    enum Status {
+        Retired,
+        InUse,
+        Available
+    }
+
     // events
+    event CarAdded(
+        uint indexed id,
+        string name,
+        string imgUrl,
+        uint rentFee,
+        uint saleFee
+    );
+    event CarMetaDataEdited(
+        uint indexed id,
+        string name,
+        string imgUrl,
+        uint rentFee,
+        uint saleFee
+    );
+    event CarStatusEdited(uint indexed id, Status status);
+    event UserAdded(
+        address indexed walletAddress,
+        string name,
+        string lastName
+    );
+    event Deposit(address indexed walletAddress, uint amount);
+    event CheckOut(address indexed walletAddress, uint indexed carId);
+    event CheckIn(address indexed walletAddress, uint indexed carId);
+    event PaymentMade(address indexed walletAddress, uint amount);
+    event BalanceWithdraw(address indexed walletAddress, uint amount);
 
     // user mapping
 
