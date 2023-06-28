@@ -1,17 +1,32 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
 
+import "@openzeppelin/contracts/utils/Counters.sol";
+
 contract CarRental {
+   
    // DATA
 
    // Counter
+   using Counters for Counters.Counter;
+   Counters.Counter private _counter;
 
    // Owner
+   address private owner;
 
    // totalPayments
+   uint private totalPayments;
 
    // user struct
-
+   struct User {
+      address walletAddress;
+      string name;
+      string lastName;
+      uint rentedCarId;
+      uint balance;
+      uint debt;
+      uint start;
+   }
    // car struct
 
    // enum to indicate the status of the cara
