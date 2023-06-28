@@ -71,14 +71,23 @@ contract CarRental {
     event BalanceWithdraw(address indexed walletAddress, uint amount);
 
     // user mapping
+   mapping(address => User) private users;
 
     // car mapping
+   mapping(uint => Car) private cars;
 
     // constructor
-
+   constructor() {
+      owner = msg.sender;
+      totalPayments = 0;
+   }
+    
     // MODIFIERS
-
     // onylOwner
+    modifier onlyOwner() {
+      require(msg.sender == owner, "Only owner is allowed to call this function.");
+      _;
+    }
 
     // FUNCTIONS
 
