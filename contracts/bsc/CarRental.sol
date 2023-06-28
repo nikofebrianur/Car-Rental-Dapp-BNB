@@ -4,88 +4,100 @@ pragma solidity ^0.8.7;
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract CarRental {
-   
-   // DATA
+    // DATA
 
-   // Counter
+    // Counter
    using Counters for Counters.Counter;
-   Counters.Counter private _counter;
+    Counters.Counter private _counter;
 
-   // Owner
-   address private owner;
+    // Owner
+    address private owner;
 
-   // totalPayments
-   uint private totalPayments;
+    // totalPayments
+    uint private totalPayments;
 
-   // user struct
-   struct User {
-      address walletAddress;
-      string name;
-      string lastName;
-      uint rentedCarId;
-      uint balance;
-      uint debt;
-      uint start;
+    // user struct
+    struct User {
+        address walletAddress;
+        string name;
+        string lastName;
+        uint rentedCarId;
+        uint balance;
+        uint debt;
+        uint start;
+    }
+    // car struct
+    struct Car {
+        uint id;
+        string name;
+        string imgUrl;
+        Status status;
+        uint rentFee;
+        uint saleFee;
+    }
+
+    // enum to indicate the status of the cara
+   enum Status {
+      Retired,
+      InUse,
+      Available
    }
-   // car struct
+   
+    // events
 
-   // enum to indicate the status of the cara
+    // user mapping
 
-   // events
+    // car mapping
 
-   // user mapping
+    // constructor
 
-   // car mapping
+    // MODIFIERS
 
-   // constructor 
+    // onylOwner
 
-   // MODIFIERS
+    // FUNCTIONS
 
-   // onylOwner
+    // Execute Functions
 
-   // FUNCTIONS
+    // setOwner #onlyOwner
 
-   // Execute Functions
+    // addUser #nonExisting
 
-   // setOwner #onlyOwner
+    // addCar #onlyOwner #nonExistingCar
 
-   // addUser #nonExisting
+    // editCarMetadata #onlyOwner #existingCar
 
-   // addCar #onlyOwner #nonExistingCar
+    // editCarStatus #onlyOwner #existingCar
 
-   // editCarMetadata #onlyOwner #existingCar
+    // checkOut #existingUser #isCarAvailabe #userHasNotRentedACar #userHasNoDebt
 
-   // editCarStatus #onlyOwner #existingCar
+    // checkIn #existingUser #isCarAvailable #userHasRentedACar
 
-   // checkOut #existingUser #isCarAvailabe #userHasNotRentedACar #userHasNoDebt
+    // deposit #existingUser
 
-   // checkIn #existingUser #isCarAvailable #userHasRentedACar
+    // makePtyment #existingUser #existingDebt #sufficentBalance
 
-   // deposit #existingUser
+    // withdrawBalance #existingUser
 
-   // makePtyment #existingUser #existingDebt #sufficentBalance
+    // withdrawOwnerBalance #onlyOwner
 
-   // withdrawBalance #existingUser
+    // Query Functions
 
-   // withdrawOwnerBalance #onlyOwner
+    // getOwner
 
-   // Query Functions
+    // isUser
 
-   // getOwner
+    // getUSer #existinguser
 
-   // isUser
+    // getCar #existingCar
 
-   // getUSer #existinguser
+    // getCarByStatus
 
-   // getCar #existingCar
+    // calculateDebt
 
-   // getCarByStatus 
+    // getCurrentCount
 
-   // calculateDebt
+    // getContractBalance #onlyOwner
 
-   // getCurrentCount
-
-   // getContractBalance #onlyOwner
-
-   // getTotalPayment #onlyOwner
+    // getTotalPayment #onlyOwner
 }
