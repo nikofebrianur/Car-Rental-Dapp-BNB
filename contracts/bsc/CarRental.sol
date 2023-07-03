@@ -94,11 +94,20 @@ contract CarRental {
     // Execute Functions
 
     // setOwner #onlyOwner
+    function setOwner(address _newOwner) external onlyOwner {
+        owner = _newOwner;
+    }
 
     // addUser #nonExisting
+    function addUser(string calldata name, string calldata lastName) external {
+        require(!isUser(msg.sender), "User already exists");
+        users[msg.sender] = User(msg.sender, name, lastName, 0, 0, 0, 0);
+
+        emit UserAdded(msg.sender, users[msg.sender].name, users[msg.sedner].lastName);
+    }
 
     // addCar #onlyOwner #nonExistingCar
-
+    
     // editCarMetadata #onlyOwner #existingCar
 
     // editCarStatus #onlyOwner #existingCar
