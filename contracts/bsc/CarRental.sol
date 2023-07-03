@@ -158,6 +158,21 @@ contract CarRental {
     }
 
     // checkIn #existingUser #isCarAvailable #userHasRentedACar
+    function checkIn() external {
+        require(isUser(msg.sender), "User does not exist");
+        uint rentedCarId = users[msg.sender].rentedCarId;
+        require(rentedCarId != 0, "User has not rented a car");
+
+        uint usedSeconds = block.timestamp - users[msg.sender].start;
+        uint rentFee = cars[rentedCarId].rentFee;
+        users[msg.sender].debt += calculateDebt(usedSeconds, rentFee);
+
+        users[msg.sender].rentedCarId = 0;
+        users[msg.sender].start = 0;
+        cars[rentedCarId].status = Status.Available;
+
+        emit CheckIn(msg.sender, rentedCarId);
+    }
 
     // deposit #existingUser
 
