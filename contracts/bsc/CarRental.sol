@@ -103,11 +103,18 @@ contract CarRental {
         require(!isUser(msg.sender), "User already exists");
         users[msg.sender] = User(msg.sender, name, lastName, 0, 0, 0, 0);
 
-        emit UserAdded(msg.sender, users[msg.sender].name, users[msg.sedner].lastName);
+        emit UserAdded(msg.sender, users[msg.sender].name, users[msg.sender].lastName);
     }
 
     // addCar #onlyOwner #nonExistingCar
-    
+    function addCar(string calldata name, string calldata imgUrl, uint rentFee, uint saleFee) external onlyOwner {
+        _counter.increment();
+        uint counter = _counter.current();
+        cars[counter] = Car(counter, name, imgUrl, Status.Available, rentFee, saleFee);
+
+        emit CarAdded(counter, cars[counter].name, cars[counter].imgUrl, cars[counter].rentFee, cars[counter].saleFee);
+    }
+
     // editCarMetadata #onlyOwner #existingCar
 
     // editCarStatus #onlyOwner #existingCar
