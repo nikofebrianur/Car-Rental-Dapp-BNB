@@ -144,6 +144,18 @@ contract CarRental {
     }
 
     // checkOut #existingUser #isCarAvailabe #userHasNotRentedACar #userHasNoDebt
+    function checkOut(uint id) external {
+        require(isUser(msg.sender), "User does not exist");
+        require(cars[id].status == Status.Available, "Car is not available for use");
+        require(users[msg.sender].rentedCarId == 0, "User has already rented a car!");
+        require(users[msg.sender].debt == 0, "User has an outstanding debt!");
+
+        users[msg.sender].start = block.timestamp;
+        users[msg.sender].rentedCarId = id;
+        cars[id].status = Status.InUse;
+
+        emit CheckOut(msg.sender, id);
+    }
 
     // checkIn #existingUser #isCarAvailable #userHasRentedACar
 
