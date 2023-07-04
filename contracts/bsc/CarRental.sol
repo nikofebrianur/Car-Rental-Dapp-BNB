@@ -175,7 +175,12 @@ contract CarRental {
     }
 
     // deposit #existingUser
+    function deposit() external payable {
+        require(isUser(msg.sender), "User does not exist");
+        users[msg.sender].balance += msg.value;
 
+        emit Deposit(msg.sender, msg.value);
+    }
     // makePtyment #existingUser #existingDebt #sufficentBalance
 
     // withdrawBalance #existingUser
