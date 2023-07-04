@@ -2,8 +2,9 @@
 pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract CarRental {
+contract CarRental is ReentrancyGuard {
     // DATA
 
     // Counter
