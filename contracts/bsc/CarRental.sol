@@ -218,6 +218,16 @@ contract CarRental is ReentrancyGuard {
     }
 
     // withdrawOwnerBalance #onlyOwner
+    function withdrawOwnerBalance(uint amount) external onlyOwner {
+        require(totalPayments >= amount, "Insufficient contract balance to withdraw");
+
+        (bool success, ) = owner.call{value: amount}("");
+        require(success, "Transfer failed");
+
+        unchecked {
+            totalPayments -= amount;
+        }
+    }
 
     // Query Functions
 
