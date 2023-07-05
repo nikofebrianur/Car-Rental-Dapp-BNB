@@ -69,7 +69,7 @@ contract CarRental is ReentrancyGuard {
     event CheckOut(address indexed walletAddress, uint indexed carId);
     event CheckIn(address indexed walletAddress, uint indexed carId);
     event PaymentMade(address indexed walletAddress, uint amount);
-    event BalanceWithdraw(address indexed walletAddress, uint amount);
+    event BalanceWithdrawn(address indexed walletAddress, uint amount);
 
     // user mapping
    mapping(address => User) private users;
@@ -202,6 +202,20 @@ contract CarRental is ReentrancyGuard {
 
     }
     // withdrawBalance #existingUser
+    function withdrawBalance(uint amount) external nonReentrant {
+        require(isUser(msg.sender), "User does not exist");
+        uint balance = users[msg.sender].balance;
+        require(balance >= amount, "Insufficient balance to withdraw");
+
+        unchecked {
+            users[msg.sender].balance -= amount;
+        }
+
+        (bool success, ) = msg.sender.call{value: amount}("");
+        require(success, "Transfer failed");
+
+        emit BalanceWithdrawn(msg.sender, balance);
+    }
 
     // withdrawOwnerBalance #onlyOwner
 
