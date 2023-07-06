@@ -236,6 +236,9 @@ contract CarRental is ReentrancyGuard {
         return owner;
     }
     // isUser
+    function isUser(address walletAddress) private view returns(bool) {
+        return users[walletAddress].walletAddress != address(0);
+    }
 
     // getUSer #existinguser
 
