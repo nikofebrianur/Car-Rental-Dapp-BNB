@@ -265,7 +265,7 @@ contract CarRental is ReentrancyGuard {
         Car[] memory carsWithStatus = new Car[](count);
         count = 0;
         for(uint i = 1; i <= length; i++) {
-            if(cars[id].status == _status) {
+            if(cars[i].status == _status) {
                 carsWithStatus[count] = cars[i];
                 count++;
             }
