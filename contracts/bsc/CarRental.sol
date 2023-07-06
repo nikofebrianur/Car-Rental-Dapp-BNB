@@ -113,11 +113,11 @@ contract CarRental is ReentrancyGuard {
         uint counter = _counter.current();
         cars[counter] = Car(counter, name, url, Status.Available, rent, sale);
 
-        emit CarAdded(counter, cars[counter].name, cars[counter].url, cars[counter].rent, cars[counter].sale);
+        emit CarAdded(counter, cars[counter].name, cars[counter].imgUrl, cars[counter].rentFee, cars[counter].saleFee);
     }
 
     // editCarMetadata #onlyOwner #existingCar
-    function editCarMetadata(uint id, string calldata name, string imgUrl, uint rentFee, uint saleFee) external onlyOwner {
+    function editCarMetadata(uint id, string calldata name, string calldata imgUrl, uint rentFee, uint saleFee) external onlyOwner {
         require(cars[id].id != 0, "Car with given ID does not exist");
         Car storage car = cars[id];
         if(bytes(name).length !=0) {
