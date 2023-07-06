@@ -254,9 +254,31 @@ contract CarRental is ReentrancyGuard {
     }
 
     // getCarByStatus
-    
+    function getCarsByStatus(Status _status) external view returns(Car[] memory) {
+        uint count = 0;
+        uitn length = _counter.current();
+        for(uint i = 1; i <= length; i++) {
+            if(cars[i].status == _status) {
+                count++;
+            }
+        }
+        Car[] memory carsWithStatus = new Car[](count);
+        count = 0;
+        for(uint i = 1; i <= length; i++) {
+            if(cars[id].status == _status) {
+                carsWithStatus[count] = cars[i];
+                count++;
+            }
+        }
+
+        return carsWithStatus;
+    }
 
     // calculateDebt
+    function calculateDebt(uint usedSeconds, uint rentFee) private pure returns(uint) {
+        uint usedMinutes = usedSeconds / 60;
+        return usedMinutes * rentFee;
+    }
 
     // getCurrentCount
 
