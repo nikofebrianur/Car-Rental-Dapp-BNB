@@ -248,8 +248,13 @@ contract CarRental is ReentrancyGuard {
     }
 
     // getCar #existingCar
+    function getCar(uint id) external view returns(Car memory) {
+        require(cars[id].id != 0, "Car does not exist");
+        return cars[id];
+    }
 
     // getCarByStatus
+    
 
     // calculateDebt
 
