@@ -281,8 +281,17 @@ contract CarRental is ReentrancyGuard {
     }
 
     // getCurrentCount
+    function getCurrentCount() external view returns(uint) {
+        return _counter.current();
+    }
 
     // getContractBalance #onlyOwner
+    function getContractBalance() external view onlyOwner returns(uint) {
+        return address(this).balance;
+    }
 
     // getTotalPayment #onlyOwner
+    function getTotalPayment() external view onlyOwner returns(uint) {
+        return totalPayments;
+    }
 }
