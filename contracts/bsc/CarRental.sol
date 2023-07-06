@@ -232,7 +232,9 @@ contract CarRental is ReentrancyGuard {
     // Query Functions
 
     // getOwner
-
+    function getOwner(address walletAddress) external view returns(address) {
+        return owner;
+    }
     // isUser
 
     // getUSer #existinguser
