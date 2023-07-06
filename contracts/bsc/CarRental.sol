@@ -256,7 +256,7 @@ contract CarRental is ReentrancyGuard {
     // getCarByStatus
     function getCarsByStatus(Status _status) external view returns(Car[] memory) {
         uint count = 0;
-        uitn length = _counter.current();
+        uint length = _counter.current();
         for(uint i = 1; i <= length; i++) {
             if(cars[i].status == _status) {
                 count++;
