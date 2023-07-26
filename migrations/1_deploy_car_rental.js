@@ -6,7 +6,7 @@ module.exports = async function (deployer) {
     const instance = await CarRental.deployed();
     let carRentalAddress = await instance.address;
 
-    let config = "export const caRentalAddress = " + carRentalAddress;
+    let config = "export const carRentalAddress = " + carRentalAddress;
 
     console.log("carRentalAddress = " + carRentalAddress);
 
