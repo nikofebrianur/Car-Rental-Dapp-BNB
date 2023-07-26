@@ -1,1 +1,1 @@
-export const caRentalAddress = 0x010CAe7e461727bAeD00614066357Cd1f73B1F77
+export const caRentalAddress = 0xf89a5366FD7ae38B402Ad40059578991D97676E8
